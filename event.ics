@@ -1,0 +1,22 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//DCHS Football//Reunion 2025//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VEVENT
+UID:dchs-football-reunion-2025@dchs-football.org
+DTSTART:20251004T230000Z
+DTEND:20251005T030000Z
+DTSTAMP:20250903T204800Z
+SUMMARY:DCHS Football Reunion 2025
+DESCRIPTION:Join us for an evening of fellowship\, recognition\, and fundraising as we celebrate the legacy of DCHS Football and support our current program. Features dinner\, recognition ceremony\, silent auction\, and social time.
+LOCATION:Dodge County High School Gymnasium\, Eastman\, GA 31023
+URL:https://dchs-football.org/2025/
+ORGANIZER;CN=DCHS Football Reunion Committee:mailto:reunion@dchs-football.org
+BEGIN:VALARM
+TRIGGER:-P1D
+ACTION:DISPLAY
+DESCRIPTION:DCHS Football Reunion tomorrow at 7:00 PM
+END:VALARM
+END:VEVENT
+END:VCALENDAR
