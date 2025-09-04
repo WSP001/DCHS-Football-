@@ -69,6 +69,8 @@ export const handler = async (event) => {
     const labels = new Set();
 
     if ((attending || "").toLowerCase() === "yes")     labels.add("attending-yes");
+    if ((attending || "").toLowerCase() === "no")      labels.add("attending-no");
+    if ((attending || "").toLowerCase() === "maybe")   labels.add("attending-maybe");
     if (volunteer.checkin || volunteer.any)            labels.add("volunteer-ops");
     if (volunteer.auction || sponsorInterest)          labels.add("auction-donor");
     if (volunteer.stage || volunteer.any)              labels.add("stage-crew");
