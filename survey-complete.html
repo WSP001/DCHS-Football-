@@ -1,0 +1,303 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>DCHS Football Reunion 2025 — RSVP Survey</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body {
+      font-family: 'Georgia', 'Times New Roman', serif;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+      line-height: 1.6;
+      background: #ffffff;
+      color: #000000;
+    }
+    
+    .header {
+      text-align: center;
+      background: #cc0000;
+      color: white;
+      padding: 30px 20px;
+      border-radius: 10px;
+      margin-bottom: 30px;
+      border: 3px solid #000000;
+    }
+    
+    .logo-placeholder {
+      width: 120px;
+      height: 120px;
+      background: #000000;
+      border: 3px solid #ffffff;
+      border-radius: 50%;
+      margin: 0 auto 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #ffffff;
+      font-weight: bold;
+      font-size: 14px;
+    }
+    
+    h1 {
+      margin: 0;
+      font-size: 2.2em;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    }
+    
+    .subtitle {
+      font-size: 1.3em;
+      margin: 10px 0;
+    }
+    
+    fieldset {
+      border: 2px solid #cc0000;
+      border-radius: 8px;
+      padding: 20px;
+      margin: 20px 0;
+      background: #fafafa;
+    }
+    
+    legend {
+      background: #000000;
+      color: #ffffff;
+      padding: 8px 16px;
+      border-radius: 4px;
+      font-weight: bold;
+    }
+    
+    label {
+      display: block;
+      margin: 12px 0;
+      font-weight: bold;
+      color: #000000;
+    }
+    
+    input, select, textarea {
+      width: 100%;
+      padding: 8px 12px;
+      border: 2px solid #000000;
+      border-radius: 4px;
+      font-size: 16px;
+      margin-top: 4px;
+    }
+    
+    input:focus, select:focus, textarea:focus {
+      border-color: #cc0000;
+      outline: none;
+      box-shadow: 0 0 5px rgba(204, 0, 0, 0.3);
+    }
+    
+    .row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+    
+    .checkbox-group {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 8px;
+      margin: 10px 0;
+    }
+    
+    .checkbox-item {
+      display: flex;
+      align-items: center;
+      background: #ffffff;
+      padding: 8px;
+      border: 1px solid #000000;
+      border-radius: 4px;
+    }
+    
+    .checkbox-item input[type="checkbox"] {
+      width: auto;
+      margin-right: 8px;
+    }
+    
+    .checkbox-item label {
+      margin: 0;
+      font-weight: normal;
+    }
+    
+    button {
+      background: #cc0000;
+      color: white;
+      padding: 15px 30px;
+      border: 3px solid #000000;
+      border-radius: 8px;
+      font-size: 18px;
+      font-weight: bold;
+      cursor: pointer;
+      width: 100%;
+      margin-top: 20px;
+    }
+    
+    button:hover {
+      background: #aa0000;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+    
+    .hint {
+      color: #666;
+      font-style: italic;
+      text-align: center;
+      margin: 20px 0;
+    }
+    
+    textarea {
+      height: 80px;
+      resize: vertical;
+    }
+    
+    @media (max-width: 600px) {
+      .row {
+        grid-template-columns: 1fr;
+      }
+      .checkbox-group {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <div class="logo-placeholder">
+      DCHS<br>LOGO
+    </div>
+    <h1>🏈 DCHS Football Reunion</h1>
+    <div class="subtitle">October 4, 2025 • Dodge County High School</div>
+  </div>
+
+  <p class="hint">Complete this survey to RSVP and get involved. Your response creates a GitHub issue for our planning team.</p>
+
+  <form name="dchs-extended-survey" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/thank-you.html">
+    <input type="hidden" name="form-name" value="dchs-extended-survey">
+    <p hidden><label>Don't fill this out: <input name="bot-field"></label></p>
+
+    <fieldset>
+      <legend>Your Information</legend>
+      <label>Name* <input name="name" type="text" required></label>
+      <div class="row">
+        <label>Email* <input name="email" type="email" required></label>
+        <label>Mobile <input name="mobile" type="tel"></label>
+      </div>
+      <label>Class Year <input name="class_year" type="number" min="1950" max="2030"></label>
+    </fieldset>
+
+    <fieldset>
+      <legend>Event Details</legend>
+      <div class="row">
+        <label>Role*
+          <select name="role" required>
+            <option value="">Select Role</option>
+            <option value="Player">Player</option>
+            <option value="Coach">Coach</option>
+            <option value="Manager">Manager</option>
+            <option value="Cheerleader">Cheerleader</option>
+            <option value="Band">Band</option>
+            <option value="Family">Family</option>
+            <option value="Community">Community</option>
+          </select>
+        </label>
+        <label>Will you attend?*
+          <select name="attending" required>
+            <option value="">Will you attend?</option>
+            <option value="Yes">Yes</option>
+            <option value="No">No</option>
+            <option value="Maybe">Maybe</option>
+          </select>
+        </label>
+      </div>
+      <div class="row">
+        <label>Number of Guests <input name="guests" type="number" min="0" max="10"></label>
+        <label>Preferred Table
+          <select name="decade">
+            <option value="">Preferred table</option>
+            <option value="'70s">'70s Era</option>
+            <option value="'80s">'80s Era</option>
+            <option value="'90s">'90s Era</option>
+            <option value="'00s">'00s Era</option>
+            <option value="'10s">'10s Era</option>
+            <option value="'20s">'20s Era</option>
+            <option value="Mixed">Mixed/Family</option>
+          </select>
+        </label>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>Accessibility & Dietary</legend>
+      <label>Accessibility or Dietary Needs
+        <textarea name="access_diet" placeholder="Any accessibility needs or dietary restrictions?"></textarea>
+      </label>
+    </fieldset>
+
+    <fieldset>
+      <legend>Volunteer Opportunities</legend>
+      <div class="checkbox-group">
+        <div class="checkbox-item">
+          <input type="checkbox" name="volunteer_checkin" value="1" id="volunteer_checkin">
+          <label for="volunteer_checkin">Check-In & Badge Setup</label>
+        </div>
+        <div class="checkbox-item">
+          <input type="checkbox" name="volunteer_auction" value="1" id="volunteer_auction">
+          <label for="volunteer_auction">Auction Table & Bidding</label>
+        </div>
+        <div class="checkbox-item">
+          <input type="checkbox" name="volunteer_stage" value="1" id="volunteer_stage">
+          <label for="volunteer_stage">Stage Crew & Timing</label>
+        </div>
+        <div class="checkbox-item">
+          <input type="checkbox" name="volunteer_media" value="1" id="volunteer_media">
+          <label for="volunteer_media">Social Media & Photos</label>
+        </div>
+        <div class="checkbox-item">
+          <input type="checkbox" name="volunteer_access" value="1" id="volunteer_access">
+          <label for="volunteer_access">Accessibility Concierge</label>
+        </div>
+        <div class="checkbox-item">
+          <input type="checkbox" name="volunteer_vip" value="1" id="volunteer_vip">
+          <label for="volunteer_vip">VIP Host</label>
+        </div>
+        <div class="checkbox-item">
+          <input type="checkbox" name="volunteer_any" value="1" id="volunteer_any">
+          <label for="volunteer_any">Wherever needed</label>
+        </div>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>Program & Sponsorship</legend>
+      <div class="checkbox-group">
+        <div class="checkbox-item">
+          <input type="checkbox" name="recognition_team" value="1" id="recognition_team">
+          <label for="recognition_team">Help with program & recognition</label>
+        </div>
+        <div class="checkbox-item">
+          <input type="checkbox" name="sponsor_interest" value="1" id="sponsor_interest">
+          <label for="sponsor_interest">Interested in sponsorship opportunities</label>
+        </div>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>Share Your Story</legend>
+      <label>Favorite Memory
+        <textarea name="memory" placeholder="Share a favorite memory or story..."></textarea>
+      </label>
+      <label>Photo Link
+        <input name="photo_url" type="url" placeholder="Link to a photo you'd like to share">
+      </label>
+    </fieldset>
+
+    <button type="submit">🏈 Submit RSVP & Create GitHub Issue</button>
+  </form>
+
+  <p class="hint">This form automatically creates a GitHub issue with your details for our planning team. Thank you for joining us!</p>
+
+</body>
+</html>
+

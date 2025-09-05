@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 420" role="img" aria-labelledby="title desc">
+  <title id="title">Dodge County Indians Football — Legacy Crest Badge</title>
+  <desc id="desc">Shield-style crest with DC monogram, football laces, and feather accent. Colors: red, black, white.</desc>
+  <defs>
+    <style>
+      :root { --dchs-red:#C8102E; --dchs-black:#111111; --dchs-white:#ffffff; }
+      .red{fill:var(--dchs-red)} .black{fill:var(--dchs-black)} .white{fill:var(--dchs-white)}
+      .stroke-white{stroke:var(--dchs-white);stroke-width:8;stroke-linecap:round;stroke-linejoin:round;fill:none}
+      .stroke-red{stroke:var(--dchs-red);stroke-width:6;stroke-linecap:round;stroke-linejoin:round;fill:none}
+      .shadow{filter:drop-shadow(2px 2px 4px rgba(0,0,0,0.3))}
+    </style>
+    <g id="feather">
+      <path class="white" d="M0,0 C28,-15 58,-15 86,0 C68,20 48,32 26,40 C12,45 4,54 0,66 Z"/>
+      <path class="stroke-red" d="M6,8 C32,-4 60,-2 80,10"/>
+      <path class="stroke-red" d="M15,26 C34,20 52,18 70,24"/>
+      <path class="stroke-red" d="M8,44 C30,38 48,38 66,42"/>
+    </g>
+  </defs>
+  
+  <!-- Shield background -->
+  <path d="M210 40 C280 40 340 70 360 140 C360 240 320 320 210 380 C100 320 60 240 60 140 C80 70 140 40 210 40 Z" class="black shadow"/>
+  <path d="M210 50 C270 50 320 75 335 135 C335 225 300 295 210 350 C120 295 85 225 85 135 C100 75 150 50 210 50 Z" class="red"/>
+  <path d="M210 65 C255 65 295 85 305 130 C305 205 280 265 210 310 C140 265 115 205 115 130 C125 85 165 65 210 65 Z" class="white"/>
+  
+  <!-- DC Monogram -->
+  <g font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial" font-weight="800">
+    <text x="160" y="200" font-size="85" class="black" style="letter-spacing:-2px;">D</text>
+    <text x="230" y="200" font-size="85" class="black" style="letter-spacing:-2px;">C</text>
+  </g>
+  
+  <!-- Football laces -->
+  <g transform="translate(175,220)">
+    <rect x="0" y="0" width="70" height="20" rx="10" class="white"/>
+    <path class="stroke-red" d="M10 10 H60"/>
+    <path class="stroke-red" d="M20 4 v12"/>
+    <path class="stroke-red" d="M30 4 v12"/>
+    <path class="stroke-red" d="M40 4 v12"/>
+    <path class="stroke-red" d="M50 4 v12"/>
+  </g>
+  
+  <!-- Decorative feather -->
+  <g transform="translate(320,120) rotate(25) scale(0.8)"><use href="#feather"/></g>
+  
+  <!-- Text elements -->
+  <g font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial" text-anchor="middle">
+    <text x="210" y="90" font-size="22" class="white" font-weight="700" style="letter-spacing:2px;">DODGE COUNTY</text>
+    <text x="210" y="280" font-size="18" class="white" font-weight="600" style="letter-spacing:1.5px;">INDIANS FOOTBALL</text>
+    <text x="210" y="340" font-size="16" class="red" font-weight="500" style="letter-spacing:3px;">REUNION 2025</text>
+  </g>
+</svg>

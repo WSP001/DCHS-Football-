@@ -1,20 +1,45 @@
 [build]
   publish = "."
-  
+  # keep your existing command or remove if static
+  # command = "npm run build"
+
+# --- Redirects: subdomains as productized entry points
+[[redirects]]
+  from = "https://reunion.dchs-football.org/*"
+  to   = "https://dchs-football.org/2025/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "https://rsvp.dchs-football.org/*"
+  to   = "https://dchs-football.org/survey-complete.html"
+  status = 301
+  force = true
+
+# (Optional) normalize www -> apex
+[[redirects]]
+  from = "https://www.dchs-football.org/*"
+  to   = "https://dchs-football.org/:splat"
+  status = 301
+  force = true
+
+# --- Caching for brand assets (swap to 1y after launch if you like)
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=604800, immutable" # 7 days
+
+# --- Security hardening (sane defaults for a static site)
 [[headers]]
   for = "/*"
   [headers.values]
     X-Content-Type-Options = "nosniff"
-    X-Frame-Options = "DENY"
+    X-Frame-Options = "SAMEORIGIN"
     Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "geolocation=(), microphone=(), camera=()"
 
+# --- Correct MIME for calendar file if present
 [[headers]]
   for = "/event.ics"
   [headers.values]
     Content-Type = "text/calendar; charset=utf-8"
-
-[[redirects]]
-  from = "https://2025.dchs-football.org/*"
-  to   = "https://dchs-football.org/2025/:splat"
-  status = 301
-  force  = true

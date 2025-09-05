@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 420" role="img" aria-labelledby="title desc">
+  <title id="title">Dodge County Indians Football — Modern Vector Emblem</title>
+  <desc id="desc">Circular emblem with bold DC monogram, geometric football design, and tribal accent. Colors: red, black, white.</desc>
+  <defs>
+    <style>
+      :root { --dchs-red:#C8102E; --dchs-black:#111111; --dchs-white:#ffffff; }
+      .red{fill:var(--dchs-red)} .black{fill:var(--dchs-black)} .white{fill:var(--dchs-white)}
+      .stroke-white{stroke:var(--dchs-white);stroke-width:10;stroke-linecap:round;stroke-linejoin:round;fill:none}
+      .stroke-red{stroke:var(--dchs-red);stroke-width:8;stroke-linecap:round;stroke-linejoin:round;fill:none}
+      .bold{font-weight:900} .medium{font-weight:600}
+    </style>
+  </defs>
+  
+  <!-- Outer ring -->
+  <circle cx="210" cy="210" r="200" class="black"/>
+  <circle cx="210" cy="210" r="185" class="white"/>
+  <circle cx="210" cy="210" r="170" class="red"/>
+  <circle cx="210" cy="210" r="155" class="white"/>
+  
+  <!-- Central shield -->
+  <circle cx="210" cy="210" r="140" class="black"/>
+  
+  <!-- DC Monogram - bold and modern -->
+  <g font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial" text-anchor="middle" class="white bold">
+    <text x="185" y="230" font-size="120" style="letter-spacing:-8px;">D</text>
+    <text x="235" y="230" font-size="120" style="letter-spacing:-8px;">C</text>
+  </g>
+  
+  <!-- Geometric football pattern -->
+  <g class="red">
+    <ellipse cx="210" cy="150" rx="35" ry="8"/>
+    <ellipse cx="210" cy="270" rx="35" ry="8"/>
+    <rect x="195" y="195" width="30" height="30" rx="5"/>
+  </g>
+  
+  <!-- Lace pattern -->
+  <g class="stroke-white">
+    <path d="M180 210 L240 210"/>
+    <path d="M190 200 L190 220"/>
+    <path d="M200 200 L200 220"/>
+    <path d="M210 200 L210 220"/>
+    <path d="M220 200 L220 220"/>
+    <path d="M230 200 L230 220"/>
+  </g>
+  
+  <!-- Tribal accent patterns -->
+  <g class="stroke-red" stroke-width="6">
+    <path d="M120 120 L140 140 L120 160"/>
+    <path d="M300 120 L280 140 L300 160"/>
+    <path d="M120 300 L140 280 L120 260"/>
+    <path d="M300 300 L280 280 L300 260"/>
+  </g>
+  
+  <!-- Text ring -->
+  <g font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial" text-anchor="middle" class="white">
+    <text x="210" y="85" font-size="28" class="medium" style="letter-spacing:3px;">DODGE COUNTY</text>
+    <text x="210" y="350" font-size="24" class="medium" style="letter-spacing:2px;">INDIANS FOOTBALL</text>
+    <text x="210" y="380" font-size="18" class="red" style="letter-spacing:4px;">2025</text>
+  </g>
+</svg>

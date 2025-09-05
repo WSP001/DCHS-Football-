@@ -4,50 +4,114 @@
   <meta charset="utf-8">
   <title>DCHS Football Reunion 2025</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#8B0000">
+  <link rel="preload" href="/assets/logo-main.png?v=2025-09" as="image" imagesizes="150px" />
   <style>
-    body{font-family:system-ui,Arial,sans-serif;max-width:800px;margin:0 auto;padding:20px;line-height:1.6}
-    .hero{text-align:center;background:#003366;color:white;padding:40px 20px;border-radius:10px;margin-bottom:30px}
-    .cta{display:inline-block;background:#0563c1;color:white;padding:15px 30px;text-decoration:none;border-radius:8px;margin:10px;font-weight:bold}
-    .cta:hover{background:#0451a3}
-    .section{margin:30px 0;padding:20px;border:1px solid #ddd;border-radius:8px}
+    :root{
+      --red:#8B0000; --red2:#DC143C; --black:#000; --ink:#222; --paper:#f8f8f8;
+      --shadow:0 4px 12px rgba(0,0,0,.25);
+    }
+    *{box-sizing:border-box}
+    body{
+      font-family: Georgia, "Times New Roman", serif;
+      max-width: 800px; margin: 0 auto; padding: 20px; line-height: 1.6;
+      background: var(--paper); color: var(--ink);
+    }
+    .hero{
+      text-align:center; color:#fff; padding:40px 20px; border-radius:12px; margin-bottom:30px;
+      background: linear-gradient(135deg,var(--red),var(--red2));
+      box-shadow: var(--shadow);
+    }
+    .logo{
+      width:150px;height:150px;margin:0 auto 16px;border-radius:50%;
+      background:#fff; border:4px solid #fff; box-shadow: var(--shadow); padding:8px;
+      display:flex;align-items:center;justify-content:center;
+    }
+    .logo img{ width:100%; height:100%; object-fit:contain; image-rendering:auto; }
+    .cta{
+      display:inline-block; margin:10px; padding:14px 26px; border-radius:10px;
+      color:#fff; text-decoration:none; font-weight:700; border:2px solid #fff;
+      background: linear-gradient(135deg,var(--red),var(--red2));
+      transition: transform .15s ease, box-shadow .15s ease, background .15s ease;
+    }
+    .cta:hover{ background:#000; transform: translateY(-2px); box-shadow: var(--shadow); }
+    .section{
+      margin:28px 0; padding:20px; border-radius:10px; background:#fff; box-shadow:0 2px 8px rgba(0,0,0,.08);
+      border:2px solid var(--red);
+    }
+    .section h3{ margin-top:0; color:var(--red); border-bottom:2px solid var(--red2); padding-bottom:8px; }
+    .footer{ text-align:center; padding:26px; background:#000; color:#fff; border-radius:10px; margin:40px 0 0; }
+    .logo-grid{ display:flex; gap:20px; justify-content:center; flex-wrap:wrap; margin:16px 0 6px; }
+    .mini-logo{ width:72px;height:72px; background:#fff; border-radius:10px; padding:6px; box-shadow:0 2px 6px rgba(0,0,0,.2); }
+    .mini-logo img{ width:100%; height:100%; object-fit:contain; }
+    .indian-pride{
+      background: linear-gradient(45deg,var(--red),var(--red2),#000);
+      -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent; font-weight:700;
+    }
   </style>
 </head>
 <body>
   <div class="hero">
-    <h1>🏈 DCHS Football Reunion</h1>
+    <div class="logo">
+      <!-- Prefer PNG comp for pixel-perfect look; SVG fallback if PNG not present -->
+      <picture>
+        <source srcset="/assets/logo-main.png?v=2025-09" type="image/png" />
+        <img src="/assets/logo-main.svg?v=2025-09" alt="DCHS Football Reunion Logo">
+      </picture>
+    </div>
+    <h1>🏈 DCHS Indians Football Reunion</h1>
     <h2>October 4, 2025</h2>
     <p>Dodge County High School Gym • Eastman, GA</p>
-    <a href="/survey-pipeline.html" class="cta">RSVP Now</a>
-    <a href="/2025/" class="cta">2025 Event Details</a>
+
+    <div class="logo-grid">
+      <div class="mini-logo">
+        <picture>
+          <source srcset="/assets/logo-shield.png?v=2025-09" type="image/png" />
+          <img src="/assets/logo-shield.svg?v=2025-09" alt="DCHS Indians Shield">
+        </picture>
+      </div>
+      <div class="mini-logo">
+        <picture>
+          <source srcset="/assets/logo-football.png?v=2025-09" type="image/png" />
+          <img src="/assets/logo-football.svg?v=2025-09" alt="Indians Football Badge">
+        </picture>
+      </div>
+    </div>
+
+    <a href="/survey-complete.html" class="cta">RSVP Now</a>
+    <a href="/dashboard.html" class="cta">Admin Dashboard</a>
   </div>
 
   <div class="section">
-    <h3>Reunion Details</h3>
-    <ul>
-      <li><strong>Date:</strong> Saturday, October 4, 2025</li>
-      <li><strong>Time:</strong> 7:00 PM - 11:00 PM</li>
-      <li><strong>Location:</strong> Dodge County High School Gym</li>
-      <li><strong>Address:</strong> Eastman, GA</li>
-    </ul>
+    <h3>🎯 Reunion Details</h3>
+    <p><strong>Date:</strong> Saturday, October 4, 2025</p>
+    <p><strong>Time:</strong> 6:00 PM – 11:00 PM</p>
+    <p><strong>Location:</strong> Dodge County High School Gymnasium</p>
+    <p><strong>Address:</strong> 1639 2nd Ave, Eastman, GA 31023</p>
   </div>
 
   <div class="section">
-    <h3>What to Expect</h3>
-    <ul>
-      <li>Reunion dinner and fellowship</li>
-      <li>Recognition ceremony</li>
-      <li>Silent auction fundraiser</li>
-      <li>Photo opportunities and memories</li>
-      <li>Live music and entertainment</li>
-    </ul>
+    <h3>🪶 <span class="indian-pride">Indian Pride Lives On</span></h3>
+    <p>Join us as we celebrate the legacy of DCHS Indians Football! Reconnect with teammates, coaches, and fellow Indians as we honor our shared history and the pride that unites us all.</p>
+    <p><strong>All former players, coaches, managers, and supporters welcome!</strong></p>
   </div>
 
   <div class="section">
-    <h3>Quick Links</h3>
-    <p>
-      <a href="/survey-pipeline.html" class="cta">Submit RSVP</a>
-      <a href="/event.ics" class="cta">Add to Calendar</a>
-    </p>
+    <h3>📝 RSVP Required</h3>
+    <p>Please complete our quick survey to help us plan for food, seating, and special recognitions.</p>
+    <a href="/survey-complete.html" class="cta">Complete Survey</a>
+  </div>
+
+  <div class="section">
+    <h3>📞 Questions?</h3>
+    <p>Contact the reunion committee:</p>
+    <p><strong>Email:</strong> info@dchsfootballalumni.org</p>
+    <p><strong>Phone:</strong> (478) 374-4135</p>
+  </div>
+
+  <div class="footer">
+    <p><strong>🪶 DCHS Indians Football Alumni 🪶</strong></p>
+    <p>Once an Indian, Always an Indian!</p>
   </div>
 </body>
 </html>

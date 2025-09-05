@@ -1,0 +1,53 @@
+<svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+  <!-- Main Logo: Dodge County Football Reunion with Football and Feather -->
+  <defs>
+    <style>
+      .logo-text { font-family: 'Arial Black', Arial, sans-serif; font-weight: bold; }
+      .year-text { font-family: Arial, sans-serif; font-weight: bold; }
+    </style>
+  </defs>
+  
+  <!-- Outer Circle -->
+  <circle cx="200" cy="200" r="195" fill="none" stroke="#000" stroke-width="8"/>
+  
+  <!-- Top Arc Text -->
+  <path id="top-arc" d="M 40 200 A 160 160 0 0 1 360 200" fill="none"/>
+  <text class="logo-text" font-size="32" fill="#000">
+    <textPath href="#top-arc" startOffset="50%" text-anchor="middle">DODGE COUNTY</textPath>
+  </text>
+  
+  <!-- Bottom Arc Text -->
+  <path id="bottom-arc" d="M 360 200 A 160 160 0 0 1 40 200" fill="none"/>
+  <text class="logo-text" font-size="28" fill="#000">
+    <textPath href="#bottom-arc" startOffset="50%" text-anchor="middle">FOOTBALL REUNION</textPath>
+  </text>
+  
+  <!-- Inner Circle -->
+  <circle cx="200" cy="200" r="120" fill="none" stroke="#000" stroke-width="4"/>
+  
+  <!-- Football -->
+  <ellipse cx="200" cy="200" rx="45" ry="28" fill="#8B4513" stroke="#000" stroke-width="2"/>
+  <!-- Football laces -->
+  <line x1="185" y1="200" x2="215" y2="200" stroke="#fff" stroke-width="2"/>
+  <line x1="190" y1="195" x2="190" y2="205" stroke="#fff" stroke-width="1.5"/>
+  <line x1="195" y1="195" x2="195" y2="205" stroke="#fff" stroke-width="1.5"/>
+  <line x1="200" y1="195" x2="200" y2="205" stroke="#fff" stroke-width="1.5"/>
+  <line x1="205" y1="195" x2="205" y2="205" stroke="#fff" stroke-width="1.5"/>
+  <line x1="210" y1="195" x2="210" y2="205" stroke="#fff" stroke-width="1.5"/>
+  
+  <!-- Feather on Football -->
+  <g transform="translate(200,200) rotate(-15)">
+    <path d="M 0,-15 Q 8,-25 15,-20 Q 12,-10 8,-8 Q 4,-12 0,-15 Z" fill="#fff"/>
+    <path d="M 0,-15 L 0,-30" stroke="#fff" stroke-width="1"/>
+    <path d="M -2,-18 L 2,-18" stroke="#fff" stroke-width="0.5"/>
+    <path d="M -3,-21 L 3,-21" stroke="#fff" stroke-width="0.5"/>
+    <path d="M -2,-24 L 2,-24" stroke="#fff" stroke-width="0.5"/>
+  </g>
+  
+  <!-- Year Boxes -->
+  <rect x="40" y="320" width="60" height="40" fill="#000" stroke="#000"/>
+  <text x="70" y="345" class="year-text" font-size="20" fill="#fff" text-anchor="middle">1977</text>
+  
+  <rect x="300" y="320" width="60" height="40" fill="#000" stroke="#000"/>
+  <text x="330" y="345" class="year-text" font-size="20" fill="#fff" text-anchor="middle">2025</text>
+</svg>

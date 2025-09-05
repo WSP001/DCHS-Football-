@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DCHS Football Admin Dashboard | Live Stats & Management 🏈</title>
+    <meta name="robots" content="noindex,nofollow">
+    <meta name="description" content="Live admin dashboard for DCHS Football Reunion - Real-time GitHub Issues tracking and management">
+    <meta name="last-updated" content="September 3, 2025">
+    
+    <style>
+        :root {
+            --red: #C8102E;
+            --dark-red: #8B0000;
+            --black: #1a1a1a;
+            --white: #ffffff;
+            --light-gray: #f8f9fa;
+            --gray: #6c757d;
+            --border: #dee2e6;
+            --success: #28a745;
+            --warning: #ffc107;
+            --danger: #dc3545;
+            --info: #17a2b8;
+            --radius: 12px;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, var(--light-gray) 0%, #e9ecef 100%);
+            color: var(--black);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        .header {
+            background: linear-gradient(135deg, var(--red) 0%, var(--dark-red) 100%);
+            color: var(--white);
+            padding: 2rem 0;
+            box-shadow: var(--shadow-lg);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 2;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .logo {
+            width: 60px;
+            height: 60px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            font-weight: bold;
+            backdrop-filter: blur(10px);
+        }
+
+        .title-section h1 {
+            font-size: 2.2rem;
+            font-weight: 900;
+            margin-bottom: 0.2rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .subtitle {
+            font-size: 1rem;
+            opacity: 0.9;
+            font-weight: 500;
+        }
+
+        .status-indicators {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .status-badge {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+        }
+
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .card {
+            background: var(--white);
+            border-radius: var(--radius);
+            padding: 1.5rem;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--light-gray);
+        }
+
+        .card-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--black);
+            margin: 0;
+        }
+
+        .card-icon {
+            font-size: 1.5rem;
+            color: var(--red);
+        }
+
+        .metric {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+        }
+
+        .metric-value {
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: var(--red);
+            line-height: 1;
+        }
+
+        .metric-label {
+            font-size: 0.9rem;
+            color: var(--gray);
+            font-weight: 600;
+        }
+
+        .refresh-controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding: 1rem;
+            background: var(--white);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border);
+        }
+
+        .refresh-btn {
+            background: linear-gradient(135deg, var(--red) 0%, var(--dark-red) 100%);
+            color: var(--white);
+            border: none;
+            padding: 0.7rem 1.5rem;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+
+        .refresh-btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(200, 16, 46, 0.3);
+        }
+
+        .refresh-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .last-updated {
+            font-size: 0.8rem;
+            color: var(--gray);
+            font-weight: 500;
+        }
+
+        .loading {
+            opacity: 0.6;
+            position: relative;
+        }
+
+        .error-message {
+            background: rgba(220, 53, 69, 0.1);
+            color: var(--danger);
+            padding: 1rem;
+            border-radius: var(--radius);
+            border: 1px solid rgba(220, 53, 69, 0.2);
+            margin-bottom: 1rem;
+            font-weight: 500;
+        }
+
+        .quick-actions {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-top: 1rem;
+        }
+
+        .action-btn {
+            background: var(--white);
+            color: var(--red);
+            border: 2px solid var(--red);
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.8rem;
+            transition: all 0.3s ease;
+        }
+
+        .action-btn:hover {
+            background: var(--red);
+            color: var(--white);
+            transform: translateY(-1px);
+        }
+
+        .footer {
+            background: var(--black);
+            color: var(--white);
+            text-align: center;
+            padding: 2rem 1rem;
+            margin-top: 3rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="header-content">
+            <div class="logo-section">
+                <div class="logo">��</div>
+                <div class="title-section">
+                    <h1>DCHS Football Admin</h1>
+                    <p class="subtitle">Reunion Management Dashboard</p>
+                </div>
+            </div>
+            <div class="status-indicators">
+                <div class="status-badge" id="api-status">🟢 API Connected</div>
+                <div class="status-badge" id="site-status">🟢 Site Live</div>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="refresh-controls">
+            <div class="last-updated">
+                Last updated: <span id="last-updated">Loading...</span>
+            </div>
+            <div class="quick-actions">
+                <a href="/survey-pipeline.html" class="action-btn" target="_blank">📝 View Form</a>
+                <a href="https://github.com/WSP001/DCHS-Football-/issues" class="action-btn" target="_blank">📋 View Issues</a>
+                <button class="refresh-btn" id="refresh-btn" onclick="loadStats()">🔄 Refresh Data</button>
+            </div>
+        </div>
+
+        <div id="error-container"></div>
+
+        <div class="dashboard-grid">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">📊 RSVP Summary</h3>
+                    <span class="card-icon">✅</span>
+                </div>
+                <div class="metric">
+                    <div>
+                        <div class="metric-value" id="total-rsvps">-</div>
+                        <div class="metric-label">Total RSVPs</div>
+                    </div>
+                </div>
+                <div style="display: flex; justify-content: space-between; margin-top: 1rem;">
+                    <div style="text-align: center;">
+                        <div style="font-size: 1.5rem; font-weight: 700; color: var(--success);" id="attending-yes">-</div>
+                        <div style="font-size: 0.8rem; color: var(--gray);">Attending</div>
+                    </div>
+                    <div style="text-align: center;">
+                        <div style="font-size: 1.5rem; font-weight: 700; color: var(--warning);" id="attending-maybe">-</div>
+                        <div style="font-size: 0.8rem; color: var(--gray);">Maybe</div>
+                    </div>
+                    <div style="text-align: center;">
+                        <div style="font-size: 1.5rem; font-weight: 700; color: var(--danger);" id="attending-no">-</div>
+                        <div style="font-size: 0.8rem; color: var(--gray);">Can't Attend</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">📈 Recent Activity</h3>
+                    <span class="card-icon">📅</span>
+                </div>
+                <div class="metric">
+                    <div>
+                        <div class="metric-value" id="last24">-</div>
+                        <div class="metric-label">Last 24 Hours</div>
+                    </div>
+                </div>
+                <div style="display: flex; justify-content: space-between; margin-top: 1rem;">
+                    <div style="text-align: center;">
+                        <div style="font-size: 1.3rem; font-weight: 700; color: var(--info);" id="last7d">-</div>
+                        <div style="font-size: 0.8rem; color: var(--gray);">Last 7 Days</div>
+                    </div>
+                    <div style="text-align: center;">
+                        <div style="font-size: 1.3rem; font-weight: 700; color: var(--black);" id="total-open">-</div>
+                        <div style="font-size: 0.8rem; color: var(--gray);">Total Open</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">💰 Sponsors & Auction</h3>
+                    <span class="card-icon">🏆</span>
+                </div>
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                    <div style="text-align: center;">
+                        <div style="font-size: 2rem; font-weight: 700; color: #6610f2;" id="sponsor-leads">-</div>
+                        <div style="font-size: 0.8rem; color: var(--gray);">Sponsor Leads</div>
+                    </div>
+                    <div style="text-align: center;">
+                        <div style="font-size: 2rem; font-weight: 700; color: #fd7e14;" id="auction-donors">-</div>
+                        <div style="font-size: 0.8rem; color: var(--gray);">Auction Donors</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <p><strong>DCHS Football Reunion Admin Dashboard</strong></p>
+            <p style="opacity: 0.7; margin-top: 0.5rem;">Private dashboard • Keep access secure • Once a Indian, Always a Indian 🪶</p>
+        </div>
+    </footer>
+
+    <script>
+        let isLoading = false;
+        
+        async function loadStats() {
+            if (isLoading) return;
+            
+            isLoading = true;
+            const refreshBtn = document.getElementById('refresh-btn');
+            const errorContainer = document.getElementById('error-container');
+            
+            refreshBtn.disabled = true;
+            refreshBtn.innerHTML = '🔄 Loading...';
+            
+            errorContainer.innerHTML = '';
+            
+            try {
+                const response = await fetch('/.netlify/functions/stats');
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+                }
+                
+                const data = await response.json();
+                
+                if (!data.ok) {
+                    throw new Error(data.error || 'Unknown API error');
+                }
+                
+                updateDashboard(data);
+                updateApiStatus(true);
+                
+            } catch (error) {
+                console.error('Dashboard error:', error);
+                showError(`Failed to load dashboard data: ${error.message}`);
+                updateApiStatus(false);
+            } finally {
+                isLoading = false;
+                refreshBtn.disabled = false;
+                refreshBtn.innerHTML = '🔄 Refresh Data';
+                document.getElementById('last-updated').textContent = new Date().toLocaleString();
+            }
+        }
+        
+        function updateDashboard(data) {
+            const { counts, last24, last7d, totalOpen, latest } = data;
+            
+            const totalRsvps = (counts['attending-yes'] || 0) + (counts['attending-maybe'] || 0) + (counts['attending-no'] || 0);
+            document.getElementById('total-rsvps').textContent = totalRsvps;
+            document.getElementById('attending-yes').textContent = counts['attending-yes'] || 0;
+            document.getElementById('attending-maybe').textContent = counts['attending-maybe'] || 0;
+            document.getElementById('attending-no').textContent = counts['attending-no'] || 0;
+            
+            document.getElementById('last24').textContent = last24 || 0;
+            document.getElementById('last7d').textContent = last7d || 0;
+            document.getElementById('total-open').textContent = totalOpen || 0;
+            
+            document.getElementById('sponsor-leads').textContent = counts['sponsor-lead'] || 0;
+            document.getElementById('auction-donors').textContent = counts['auction-donor'] || 0;
+        }
+        
+        function showError(message) {
+            const errorContainer = document.getElementById('error-container');
+            errorContainer.innerHTML = `
+                <div class="error-message">
+                    <strong>⚠️ Error:</strong> ${escapeHtml(message)}
+                    <br><small>Check the browser console for more details.</small>
+                </div>
+            `;
+        }
+        
+        function updateApiStatus(isConnected) {
+            const statusElement = document.getElementById('api-status');
+            if (isConnected) {
+                statusElement.innerHTML = '🟢 API Connected';
+                statusElement.style.background = 'rgba(40, 167, 69, 0.2)';
+            } else {
+                statusElement.innerHTML = '🔴 API Error';
+                statusElement.style.background = 'rgba(220, 53, 69, 0.2)';
+            }
+        }
+        
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+        
+        setInterval(loadStats, 5 * 60 * 1000);
+        loadStats();
+    </script>
+</body>
+</html>
+
