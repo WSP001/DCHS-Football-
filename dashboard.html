@@ -473,7 +473,77 @@
         setInterval(loadStats, 5 * 60 * 1000);
         loadStats();
     </script>
+    <script>
+        // Security: Check admin access before loading dashboard
+        window.addEventListener('DOMContentLoaded', function() {
+            const adminAccess = sessionStorage.getItem('adminAccess');
+            const adminEmail = sessionStorage.getItem('adminEmail');
+            
+            if (!adminAccess || !adminEmail) {
+                // No access token, redirect to login
+                window.location.href = 'admin-access.html';
+                return;
+            }
+            
+            try {
+                // Decode and validate access token
+                const decoded = atob(adminAccess);
+                const parts = decoded.split('|');
+                const timestamp = parseInt(parts[2]);
+                const now = Date.now();
+                
+                // Check if token is less than 4 hours old
+                if (now - timestamp > 4 * 60 * 60 * 1000) {
+                    sessionStorage.removeItem('adminAccess');
+                    sessionStorage.removeItem('adminEmail');
+                    window.location.href = 'admin-access.html';
+                    return;
+                }
+                
+                // Show admin email in header for confirmation
+                const headerTitle = document.querySelector('.title-section h1');
+                if (headerTitle) {
+                    headerTitle.innerHTML = 'DCHS Football Admin <small style="font-size: 0.6em; opacity: 0.8;">(' + adminEmail + ')</small>';
+                }
+                
+            } catch (error) {
+                // Invalid token
+                sessionStorage.removeItem('adminAccess');
+                sessionStorage.removeItem('adminEmail');
+                window.location.href = 'admin-access.html';
+            }
+        });
+        
+                // Protect against accidental refresh that might lose data context
+        let hasUnsavedChanges = false;
+        
+        window.addEventListener('beforeunload', function (e) {
+            if (hasUnsavedChanges) {
+                e.preventDefault();
+                e.returnValue = 'You have unsaved changes. Are you sure you want to leave?';
+            }
+        });
+        
+        // Mark when user interacts with refresh or view buttons
+        document.addEventListener('click', function(e) {
+            if (e.target.textContent.includes('Refresh') || e.target.id === 'refreshBtn') {
+                const confirmed = confirm('🔄 Refresh live data from GitHub?\n\nThis will update all metrics with current submissions.');
+                if (!confirmed) {
+                    e.preventDefault();
+                    return false;
+                }
+            }
+        });
+        // Add logout button functionality
+        function logout() {
+            sessionStorage.removeItem('adminAccess');
+            sessionStorage.removeItem('adminEmail');
+            window.location.href = 'admin-access.html';
+        }
+    </script>
 </body>
 </html>
+
+
 
 
