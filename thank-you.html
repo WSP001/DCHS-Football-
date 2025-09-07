@@ -95,8 +95,33 @@
     Questions? Contact our planning team through the GitHub repository.
   </p>
 
+
+<script>
+// Trigger dashboard refresh after form submission
+document.addEventListener('DOMContentLoaded', function() {
+  // Signal that a form was submitted (for dashboard auto-refresh)
+  localStorage.setItem('dchs-form-submitted', Date.now());
+  
+  // If dashboard is open in another tab, it will auto-refresh
+  window.addEventListener('storage', function(e) {
+    if (e.key === 'dchs-form-submitted') {
+      console.log('Form submission detected - dashboard will refresh');
+    }
+  });
+  
+  // Show success message after 1 second
+  setTimeout(function() {
+    const msg = document.querySelector('.success-message');
+    if (msg) {
+      msg.style.opacity = '1';
+      msg.style.transform = 'translateY(0)';
+    }
+  }, 1000);
+});
+</script>
 </body>
 </html>
 
 
 <!-- Deployment fix 09/05/2025 22:57:10 -->
+

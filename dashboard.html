@@ -541,8 +541,46 @@
             window.location.href = 'admin-access.html';
         }
     </script>
+
+<script>
+// Enhanced auto-refresh for dashboard
+function setupDashboardAutoRefresh() {
+  // Refresh stats every 30 seconds
+  const refreshInterval = setInterval(function() {
+    if (typeof refreshStats === 'function') {
+      console.log('Auto-refreshing dashboard stats...');
+      refreshStats();
+    }
+  }, 30000);
+  
+  // Listen for form submissions from other tabs
+  window.addEventListener('storage', function(e) {
+    if (e.key === 'dchs-form-submitted') {
+      console.log('Form submission detected - refreshing dashboard in 3 seconds...');
+      setTimeout(function() {
+        if (typeof refreshStats === 'function') {
+          refreshStats();
+        }
+      }, 3000); // Delay for processing
+    }
+  });
+  
+  // Visual indicator when refreshing
+  window.addEventListener('beforerefresh', function() {
+    const indicator = document.createElement('div');
+    indicator.style.cssText = 'position:fixed;top:10px;right:10px;background:#0052cc;color:white;padding:10px;border-radius:5px;z-index:9999;';
+    indicator.textContent = '🔄 Updating stats...';
+    document.body.appendChild(indicator);
+    setTimeout(() => document.body.removeChild(indicator), 2000);
+  });
+}
+
+// Initialize on page load
+document.addEventListener('DOMContentLoaded', setupDashboardAutoRefresh);
+</script>
 </body>
 </html>
+
 
 
 
