@@ -43,3 +43,9 @@
   for = "/event.ics"
   [headers.values]
     Content-Type = "text/calendar; charset=utf-8"
+
+# Friendly alias for thank-you page
+[[redirects]]
+  from = "/thank-you"
+  to   = "/thank-you.html"
+  status = 200
