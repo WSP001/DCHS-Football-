@@ -44,15 +44,8 @@
   [headers.values]
     Content-Type = "text/calendar; charset=utf-8"
 
-
-
-# --- Thank-you hardeners (directory-based routing)
+# Friendly alias for thank-you page
 [[redirects]]
   from = "/thank-you"
-  to   = "/thank-you/"
+  to   = "/thank-you.html"
   status = 200
-
-[[redirects]]
-  from = "/thank-you.html"
-  to   = "/thank-you/"
-  status = 301
