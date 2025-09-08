@@ -46,13 +46,31 @@
 
 
 
-# --- Thank-you hardeners (directory-based routing)
+# --- Thank-you hardeners (bulletproof routing)
 [[redirects]]
   from = "/thank-you"
   to   = "/thank-you/"
   status = 200
 
+[[headers]]
+  for = "/thank-you"
+  [headers.values]
+    Cache-Control = "no-store"
+
+[[headers]]
+  for = "/thank-you/"
+  [headers.values]
+    Cache-Control = "no-store"
+
+[[headers]]
+  for = "/thank-you.html"
+  [headers.values]
+    Cache-Control = "no-store"
+
+
+# --- Form submission handlers (Netlify Forms)
 [[redirects]]
   from = "/thank-you.html"
-  to   = "/thank-you/"
-  status = 301
+  to   = "/thank-you.html"
+  status = 200
+  conditions = {Method = ["POST"]}

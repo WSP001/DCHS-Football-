@@ -1,0 +1,29 @@
+name: RSVP Canary
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  canary:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Install Netlify CLI
+        run: npm i -g netlify-cli
+        
+      - name: Lint form wiring
+        shell: bash
+        run: |
+          set -euo pipefail
+          file="survey-complete.html"
+          grep -q 'data-netlify="true"' "$file" || { echo "missing data-netlify"; exit 1; }
+          grep -q 'action="/thank-you.html"' "$file" || { echo "action must be /thank-you.html"; exit 1; }
+          grep -q 'name="form-name" value="dchs-extended-survey"' "$file" || { echo "bad form-name"; exit 1; }
+          ! grep -q 'name="_redirect"' "$file" || { echo "_redirect not allowed"; exit 1; }
+        
+      - name: Canary Tests
+        shell: pwsh
+        run: |
+          ./scripts/canary.ps1
