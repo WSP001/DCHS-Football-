@@ -1,0 +1,62 @@
+name: Netlify Deploy Preview Validation
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+jobs:
+  validate_preview:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+        
+      - name: Wait for Netlify Deploy Preview
+        uses: jakepartusch/wait-for-netlify-action@v1
+        id: netlify
+        with:
+          site_name: dchs-football
+          max_timeout: 300
+          
+      - name: Run Enhanced Canary on Preview
+        run: |
+          echo "🚀 Testing Deploy Preview: ${{ steps.netlify.outputs.url }}"
+          # Run canary tests on the preview URL
+          if [ -f "./scripts/canary/rsvp_canary.sh" ]; then
+            bash ./scripts/canary/rsvp_canary.sh ${{ steps.netlify.outputs.url }}
+          else
+            echo "⚠️ Canary script not found, running basic tests"
+            curl -f ${{ steps.netlify.outputs.url }}/thank-you.html || exit 1
+            curl -f ${{ steps.netlify.outputs.url }}/thank-you/ || exit 1
+          fi
+          
+      - name: Comment Preview URL and Results
+        uses: actions/github-script@v6
+        with:
+          script: |
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: `🚀 **Deploy Preview Ready**
+              
+              📍 **Preview URL**: ${{ steps.netlify.outputs.url }}
+              ✅ **Canary Tests**: Passed
+              📊 **Validation**: All critical endpoints operational
+              
+              **Ready for stakeholder review!**
+              
+              Test the RSVP flow:
+              - [Main Site](${{ steps.netlify.outputs.url }})
+              - [Thank You Page](${{ steps.netlify.outputs.url }}/thank-you.html)
+              - [Survey Form](${{ steps.netlify.outputs.url }}/survey-complete.html)`
+            });
+            
+      - name: Validate Deploy Preview Performance
+        run: |
+          echo "⚡ Testing Edge Function performance on preview..."
+          RESPONSE_TIME=$(curl -w "%{time_total}" -s -o /dev/null ${{ steps.netlify.outputs.url }})
+          echo "📊 Preview response time: ${RESPONSE_TIME}s"
+          
+          # Check for enterprise security headers
+          SECURITY_CHECK=$(curl -I ${{ steps.netlify.outputs.url }} 2>/dev/null | grep -i "x-content-type-options\|x-frame-options" | wc -l)
+          echo "🔒 Security headers found: $SECURITY_CHECK"

@@ -1,12 +1,21 @@
 name: Canary
 on:
   workflow_dispatch:
+    inputs:
+      preview_url:
+        description: "Netlify Deploy Preview URL (optional)"
+        required: false
+        default: ""
   push:
-    branches: [ "**" ]
+    branches: ["**"]
+
 jobs:
   canary:
     runs-on: ubuntu-latest
+    env:
+      NETLIFY_PREVIEW_URL: ${{ inputs.preview_url }}   # will be "" on push
+      BASE_URL: https://dchs-football.org
     steps:
       - uses: actions/checkout@v4
-      - name: Run RSVP canary
+      - name: Run RSVP canary (preview or prod)
         run: bash scripts/canary/rsvp_canary.sh

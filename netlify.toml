@@ -1,76 +1,66 @@
 [build]
   publish = "."
-  # keep your existing command or remove if static
-  # command = "npm run build"
+  functions = "functions"
 
-# --- Redirects: subdomains as productized entry points
+# Edge Functions binding (site-wide)
+[[edge_functions]]
+  path = "/*"
+  function = "headers"
+
+# Bulletproof RSVP redirects with atomic safety
 [[redirects]]
-  from = "https://reunion.dchs-football.org/*"
-  to   = "https://dchs-football.org/2025/:splat"
-  status = 301
+  from = "/thank-you"
+  to = "/thank-you.html"
+  status = 200
   force = true
 
 [[redirects]]
-  from = "https://rsvp.dchs-football.org/*"
-  to   = "https://dchs-football.org/survey-complete.html"
-  status = 301
+  from = "/thank-you/"
+  to = "/thank-you.html" 
+  status = 200
   force = true
 
-# (Optional) normalize www -> apex
-[[redirects]]
-  from = "https://www.dchs-football.org/*"
-  to   = "https://dchs-football.org/:splat"
-  status = 301
-  force = true
-
-# --- Caching for brand assets (swap to 1y after launch if you like)
+# Security & robots rules for admin pages
 [[headers]]
-  for = "/assets/*"
+  for = "/admin*"
   [headers.values]
-    Cache-Control = "public, max-age=604800, immutable" # 7 days
+    X-Robots-Tag = "noindex, nofollow"
 
-# --- Security hardening (sane defaults for a static site)
+[[headers]]
+  for = "/dashboard*"
+  [headers.values]
+    X-Robots-Tag = "noindex, nofollow"
+
+# Enterprise security headers (fallback to Edge Function)
 [[headers]]
   for = "/*"
   [headers.values]
     X-Content-Type-Options = "nosniff"
     X-Frame-Options = "SAMEORIGIN"
-    Referrer-Policy = "strict-origin-when-cross-origin"
-    Permissions-Policy = "geolocation=(), microphone=(), camera=()"
+    Strict-Transport-Security = "max-age=63072000; includeSubDomains"
 
-# --- Correct MIME for calendar file if present
+# Alumni photo optimization
 [[headers]]
-  for = "/event.ics"
+  for = "/alumni-photos/*"
   [headers.values]
-    Content-Type = "text/calendar; charset=utf-8"
+    Cache-Control = "public, max-age=31536000, immutable"
 
-
-
-# --- Thank-you hardeners (bulletproof routing)
-[[redirects]]
-  from = "/thank-you"
-  to   = "/thank-you/"
-  status = 200
-
+# Assets optimization
 [[headers]]
-  for = "/thank-you"
+  for = "/assets/*"
   [headers.values]
-    Cache-Control = "no-store"
+    Cache-Control = "public, max-age=31536000, immutable"
 
-[[headers]]
-  for = "/thank-you/"
-  [headers.values]
-    Cache-Control = "no-store"
+# Forms processing with enhanced security
+[form]
+  settings = { spam_filter = true }
 
-[[headers]]
-  for = "/thank-you.html"
-  [headers.values]
-    Cache-Control = "no-store"
+# Deploy contexts for different environments
+[context.deploy-preview]
+  environment = { NODE_ENV = "preview", DEBUG = "true" }
 
+[context.branch-deploy]
+  environment = { NODE_ENV = "staging" }
 
-# --- Form submission handlers (Netlify Forms)
-[[redirects]]
-  from = "/thank-you.html"
-  to   = "/thank-you.html"
-  status = 200
-  conditions = {Method = ["POST"]}
+[context.production]
+  environment = { NODE_ENV = "production", DEBUG = "false" }

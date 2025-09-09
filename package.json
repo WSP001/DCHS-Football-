@@ -1,0 +1,39 @@
+{
+  "name": "dchs-football-reunion",
+  "version": "1.0.0",
+  "description": "DCHS Football Reunion Site with Enterprise Netlify Pro Features",
+  "main": "index.html",
+  "scripts": {
+    "dev": "netlify dev",
+    "build": "echo 'Static site - no build needed'",
+    "test": "echo 'Running RSVP canary tests...' && bash scripts/canary/rsvp_canary.sh",
+    "validate": "bash scripts/atomic-deploy-validation.sh",
+    "canary": "pwsh -File scripts/canary.ps1",
+    "fix-and-verify": "pwsh -File scripts/fix-and-verify.ps1"
+  },
+  "devDependencies": {
+    "@netlify/functions": "^2.6.0",
+    "@netlify/edge-functions": "^2.3.1",
+    "typescript": "^5.4.2",
+    "@types/node": "^20.11.24"
+  },
+  "dependencies": {
+    "@netlify/functions": "^2.6.0"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/WSP001/DCHS-Football-.git"
+  },
+  "keywords": [
+    "reunion",
+    "netlify",
+    "edge-functions",
+    "typescript",
+    "enterprise"
+  ],
+  "author": "DCHS Reunion Committee",
+  "license": "MIT"
+}
