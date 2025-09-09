@@ -1,0 +1,12 @@
+name: Canary
+on:
+  workflow_dispatch:
+  push:
+    branches: [ "**" ]
+jobs:
+  canary:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run RSVP canary
+        run: bash scripts/canary/rsvp_canary.sh

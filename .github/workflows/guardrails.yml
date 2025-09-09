@@ -1,0 +1,11 @@
+name: Guardrails
+on:
+  pull_request:
+    branches: [ "main" ]
+jobs:
+  guardrails:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Canary must pass
+        run: bash scripts/canary/rsvp_canary.sh
